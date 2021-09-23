@@ -1,8 +1,10 @@
-NAME = philosophers
+NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS =  srcs/main.c \
+		srcs/init_args.c \
+
 		
 OBJSDIR = Temporary
 
