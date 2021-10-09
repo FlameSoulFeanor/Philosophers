@@ -7,22 +7,26 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct s_actions
+typedef struct s_philo
 {
-	size_t count;
-	size_t time_to_die;
-	size_t time_to_sleep;
-	size_t time_to_eat;
-	ssize_t each_eat_at_least;
-}	t_actions;
+	int		count;
+	int		time_to_die;
+	int 	time_to_sleep;
+	int		time_to_eat;
+	int		each_philo_must_eat;
+	int		is_dead;
+}	t_philo;
 
 typedef struct s_all
 {
-	int dead;
-	t_actions *actions;
+	int			left_fork;
+	int			right_fork;
+	pthread_t	philo_thread;
+	t_philo	*connect;
 }	t_all;
 
-int	init_args(t_actions *actions, int argc, char **argv);
-int	ft_atoi(const char *str);
+int		init_args(t_philo *data, int argc, char **argv);
+int		ft_atoi(const char *str);
+size_t	ft_strlen(char *str);
 
 #endif

@@ -3,6 +3,7 @@ NAME = philo
 CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS =  srcs/main.c \
+		srcs/utils.c \
 		srcs/init_args.c \
 
 		
