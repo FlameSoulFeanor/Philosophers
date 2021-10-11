@@ -9,12 +9,14 @@
 
 typedef struct s_philo
 {
-	int		count;
-	int		time_to_die;
-	int 	time_to_sleep;
-	int		time_to_eat;
-	int		each_philo_must_eat;
-	int		is_dead;
+	int				count;
+	int				time_to_die;
+	int 			time_to_sleep;
+	int				time_to_eat;
+	int				each_philo_must_eat;
+	int				dead;
+	struct timeval	time_start;
+	pthread_mutex_t	fork[250];
 }	t_philo;
 
 typedef struct s_all
@@ -22,7 +24,7 @@ typedef struct s_all
 	int			left_fork;
 	int			right_fork;
 	pthread_t	philo_thread;
-	t_philo	*connect;
+	t_philo		*connect;
 }	t_all;
 
 int		init_args(t_philo *data, int argc, char **argv);
