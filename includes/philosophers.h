@@ -15,12 +15,14 @@ typedef struct s_philo
 	int				time_to_eat;
 	int				each_philo_must_eat;
 	int				dead;
+	struct timeval	current_time;
 	struct timeval	time_start;
-	pthread_mutex_t	fork[250];
+	pthread_mutex_t	fork[200];
 }	t_philo;
 
 typedef struct s_all
 {
+	int			philo_index;
 	int			left_fork;
 	int			right_fork;
 	pthread_t	philo_thread;
