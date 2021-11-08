@@ -1,4 +1,16 @@
-#include <philosophers.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 20:09:25 by hfunctio          #+#    #+#             */
+/*   Updated: 2021/11/08 20:09:28 by hfunctio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philosophers.h"
 
 /*
 ** Один или несколько философов сидят за круглым столом и
@@ -92,5 +104,6 @@ int main(int argc, char **argv)
 		return (error_msg("Invalid arguments!\n", -1));
 	if (take_forks(all, &data))
 		return (error_msg("Mutex can't initialize!\n", -1));
+	pthread_actions(all, &data);
 	return (0);
 }

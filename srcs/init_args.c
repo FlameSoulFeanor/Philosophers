@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_args.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/08 20:09:32 by hfunctio          #+#    #+#             */
+/*   Updated: 2021/11/08 20:09:35 by hfunctio         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <philosophers.h>
 
 static int check_args(t_philo *data)
@@ -10,7 +22,7 @@ static int check_args(t_philo *data)
 
 int	init_args(t_philo *data, int argc, char **argv)
 {
-	if (argc < 5 || argc < 6)
+	if (argc != 5 && argc != 6)
 		return (error_msg("Can't initialize arguments. ", -1));
 	else
 	{

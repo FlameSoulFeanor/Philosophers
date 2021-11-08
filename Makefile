@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/11/08 20:09:39 by hfunctio          #+#    #+#              #
+#    Updated: 2021/11/08 20:09:41 by hfunctio         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philo
 
 CFLAGS = -Wall -Wextra -Werror -g
@@ -5,6 +17,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 SRCS =  srcs/main.c \
 		srcs/utils.c \
 		srcs/init_args.c \
+		srcs/pthread_actions.c
 
 
 GCC = gcc
