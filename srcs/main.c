@@ -51,66 +51,36 @@
 **
 */
 
-static int	error_msg(char *msg, int ret)
-{
-	write(1, msg, ft_strlen(msg));
-	return (ret);
-}
-
-static void take_forks(t_all *all)
+static int	take_forks(t_all *all, t_philo *philo)
 {
 	int i;
 
 	i = -1;
-	while (++i < all->connect->count)
+	gettimeofday(&(philo->time_start), NULL);
+	while (++i < philo->count_philo)
 	{
+		if (pthread_mutex_init(&(philo->fork[i]), NULL) != 0)
+			return (error_msg("Can't create mutex. ", -1));
 		all[i].philo_index = i;
 		all[i].right_fork = i;
-		all[i].left_fork = (i + 1) % all->connect->count;
+		all[i].left_fork = (i + 1) % philo->count_philo;
+		all[i].connect = philo;
+		all[i].eating_lats_time = philo->time_start;
+		all[i].eating_count = 0;
 	}
+	philo->dead = 0;
+	philo->timing_eating = 0;
+	if (pthread_mutex_init(&(philo->msg), NULL) != 0)
+		return (error_msg("Can't create mutex. ", -1));
+	if (pthread_mutex_init(&(philo->ate), NULL) != 0)
+		return (error_msg("Can't create mutex. ", -1));
+	return (0);
 }
 
-long trans_to_ms(t_philo *s_philo)
+int	error_msg(char *msg, int ret)
 {
-	return ((s_philo->current_time.tv_sec - s_philo->time_start.tv_sec) * 1000
-		+ (s_philo->current_time.tv_usec - s_philo->time_start.tv_usec) / 1000);
-}
-
-void my_ussleep(t_philo *s_philo, int delta_time)
-{
-	long till_time;
-
-	gettimeofday(&(s_philo->current_time), NULL);
-	till_time = trans_to_ms(s_philo) + delta_time;
-	while (trans_to_ms(s_philo) < till_time)
-		usleep(100);
-}
-
-static void eating_time(t_philo *s_philo, t_all *all)
-{
-	gettimeofday(&(s_philo->current_time), NULL);
-	pthread_mutex_lock(&(s_philo->fork[all->right_fork]));
-	printf("%ld %d has taken fork\n", trans_to_ms(s_philo), all->philo_index);
-	pthread_mutex_lock(&(s_philo->fork[all->left_fork]));
-	printf("%ld %d has taken fork\n", trans_to_ms(s_philo), all->philo_index);
-	printf("%ld %d is eating\n", trans_to_ms(s_philo), all->philo_index);
-	my_ussleep(s_philo, s_philo->time_to_eat);
-	gettimeofday(&(s_philo->current_time), NULL);
-	pthread_mutex_unlock(&(s_philo->fork[all->right_fork]));
-	pthread_mutex_unlock(&(s_philo->fork[all->left_fork]));
-}
-
-void* philo_life(void *philo)
-{
-	t_philo			*s_philo;
-	t_all 			*all;
-
-	all = (t_all *)philo;
-	s_philo = all->connect;
-	while (1)
-	{
-		eating_time(s_philo, all);
-	}
+	write(1, msg, ft_strlen(msg));
+	return (ret);
 }
 
 int main(int argc, char **argv)
@@ -119,11 +89,8 @@ int main(int argc, char **argv)
 	t_all	all[200];
 
 	if (init_args(&data, argc, argv))
-		return (error_msg("Invalid arguments\n", -1));
-	all->connect = &data;
-	take_forks(all);
-	gettimeofday(&(data.time_start), NULL);
-	data.current_time = data.time_start;
-	if (pthread_create(&(all->philo_thread), NULL, ) != 0);
+		return (error_msg("Invalid arguments!\n", -1));
+	if (take_forks(all, &data))
+		return (error_msg("Mutex can't initialize!\n", -1));
 	return (0);
 }
