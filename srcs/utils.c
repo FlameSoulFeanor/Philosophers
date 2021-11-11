@@ -6,7 +6,7 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:13:06 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/11 19:32:49 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/11 20:17:52 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,14 @@ int	ft_atoi(const char *str)
 		return (-1);
 	}
 	return (res = minus == 1 ? -res : res);
+}
+
+size_t	ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
