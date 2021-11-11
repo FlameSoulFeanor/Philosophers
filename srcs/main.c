@@ -6,7 +6,7 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:09:25 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/08 20:09:28 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/11 20:26:43 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,19 @@ int	error_msg(char *msg, int ret)
 	return (ret);
 }
 
+void	end(t_philo *data)
+{
+	int i;
+
+	while (data->dead != 1 && data->timing_eating
+		!= data->count_philo)
+		;
+	i = -1;
+	while (++i < data->count_philo)
+		pthread_mutex_destroy(&(data->fork[i]));
+	pthread_mutex_destroy(&(data->msg));
+}
+
 int main(int argc, char **argv)
 {
 	t_philo	data;
@@ -105,5 +118,6 @@ int main(int argc, char **argv)
 	if (take_forks(all, &data))
 		return (error_msg("Mutex can't initialize!\n", -1));
 	pthread_actions(all, &data);
+	end(&data);
 	return (0);
 }
