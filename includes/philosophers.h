@@ -6,7 +6,7 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:10:05 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/08 20:10:09 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/11 19:32:57 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ typedef struct s_all
 }	t_all;
 
 int		error_msg(char *msg, int ret);
+
 int		init_args(t_philo *data, int argc, char **argv);
+
+void	print_msg(char *msg, t_philo *data, t_all *all);
 int		ft_atoi(const char *str);
-size_t	ft_strlen(char *str);
+void	my_usleep(int wait, t_philo *data);
 
 #endif
