@@ -6,15 +6,26 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:09:32 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/08 20:09:35 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:14:14 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philosophers.h>
 
-static int check_args(t_philo *data)
+long	calc_time(t_philo *data)
 {
-	if (data->count_philo > 200 || data->count_philo < 0)
+	struct timeval	current_time;
+
+	gettimeofday(&(current_time), NULL);
+	return ((current_time.tv_sec - data->time_start.tv_sec) * 1000
+		+ (current_time.tv_usec - data->time_start.tv_usec) / 1000);
+}
+
+static int	check_args(t_philo *data)
+{
+	if (data->count_philo > 200 || data->count_philo < 0
+		|| data->time_to_die < 60 || data->time_to_sleep < 60
+		|| data->time_to_eat < 60)
 		return (-1);
 	else
 		return (0);

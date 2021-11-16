@@ -6,7 +6,7 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:10:05 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/11 20:18:25 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/16 18:09:52 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ typedef struct s_philo
 {
 	int				count_philo;
 	int				time_to_die;
-	int 			time_to_sleep;
+	int				time_to_sleep;
 	int				time_to_eat;
 	int				each_philo_must_eat;
 	int				dead;
-	int				timing_eating;
+	int				timing_eating;			
 	struct timeval	time_start;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	msg;

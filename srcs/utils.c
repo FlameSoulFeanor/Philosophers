@@ -6,7 +6,7 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:13:06 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/11 20:17:52 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:49:47 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,19 @@ void	my_usleep(int wait_time, t_philo *data)
 		usleep(i);
 }
 
-long	calc_time(t_philo *data)
-{
-	struct timeval	current_time;
-
-	gettimeofday(&(current_time), NULL);
-	return ((current_time.tv_sec - data->time_start.tv_sec) * 1000
-		+ (current_time.tv_usec - data->time_start.tv_usec) / 1000);
-}
-
 void	print_msg(char *msg, t_philo *data, t_all *all)
 {
 	pthread_mutex_lock(&(data->msg));
-	printf("%ld %d %s\n", calc_time(data), all->philo_index +1, msg);
+	printf("%ld %d %s\n", calc_time(data), all->philo_index + 1, msg);
 	pthread_mutex_unlock(&(data->msg));
+}
+
+static	int	ret_value(unsigned long res, int minus)
+{
+	if (minus)
+		return (-res);
+	else
+		return (res);
 }
 
 int	ft_atoi(const char *str)
@@ -65,12 +64,12 @@ int	ft_atoi(const char *str)
 			return (0);
 		return (-1);
 	}
-	return (res = minus == 1 ? -res : res);
+	return (ret_value(res, minus));
 }
 
 size_t	ft_strlen(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')

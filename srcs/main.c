@@ -6,7 +6,7 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:09:25 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/11 20:26:43 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:43:59 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 **
 ** Когда филосов заканчивает есть, он убирает вилку и начинает спать.
 **
-** Когда философ засыпает, он начинает думать. 
+** Когда философ засыпает, он начинает думать.
 ** Программа останавливается, когда философ умирает.
 **
 ** Аргументы на вход программы:
@@ -65,7 +65,7 @@
 
 static int	take_forks(t_all *all, t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	gettimeofday(&(philo->time_start), NULL);
@@ -97,7 +97,7 @@ int	error_msg(char *msg, int ret)
 
 void	end(t_philo *data)
 {
-	int i;
+	int	i;
 
 	while (data->dead != 1 && data->timing_eating
 		!= data->count_philo)
@@ -108,7 +108,7 @@ void	end(t_philo *data)
 	pthread_mutex_destroy(&(data->msg));
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_philo	data;
 	t_all	all[200];
