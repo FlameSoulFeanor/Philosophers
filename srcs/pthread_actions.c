@@ -6,7 +6,7 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 20:09:18 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/16 20:20:23 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:47:38 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static	void	*waiter(void *unknown_str)
 	while (1)
 	{
 		usleep(150);
-		if (all->eating_count >= data->count_philo)
+		if (data->timing_eating >= data->count_philo)
 			break ;
 		if (check_meal_time(all) >= data->time_to_die)
 		{

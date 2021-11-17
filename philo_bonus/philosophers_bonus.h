@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.h                                      :+:      :+:    :+:   */
+/*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 20:26:00 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/16 20:26:04 by hfunctio         ###   ########.fr       */
+/*   Created: 2021/11/17 18:55:11 by hfunctio          #+#    #+#             */
+/*   Updated: 2021/11/17 22:05:33 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_BONUS_H
-# define PHILO_BONUS_H
+#ifndef PHILOSOPHERS_BONUS_H
+# define PHILOSOPHERS_BONUS_H
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -24,38 +24,41 @@
 # include <fcntl.h>
 # include <semaphore.h>
 
-typedef struct s_condition
+typedef struct s_philo
 {
-	int				number_of_philosophers;
+	int				count_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				number_of_times_each_philosopher_must_eat;
+	int				each_philo_must_eat;
+	int				status;
+	int				timing_eating;
+	int				dead;
 	sem_t			*forks;
 	struct timeval	time_start;
-	sem_t			*message;
-	int				is_dead;
-	int				all_philo_eat_enough_time;
-	int				status;
-}				t_condition;
-
-typedef struct s_philo
-{
-	int				index;
-	pid_t			philo_process;
-	pthread_t		waiter_thread;
-	t_condition		*condition;
-	struct timeval	last_time_lunch;
-	int				quantity_eat;
-
+	sem_t			*msg;
 }				t_philo;
 
+typedef	struct	s_all
+{
+	int				philo_index;
+	int				eating_count;
+	pid_t			philo_process;
+	pthread_t		waiter;
+	t_philo			*connect;
+	struct timeval	eating_last_time;
+}	t_all;
+
+int		error_msg(char *msg, int ret);
+
+int		init_args(t_philo *data, int argc, char **argv);
+long	calc_time(t_philo *data);
+
+void	my_usleep(int wait_time, t_philo *data);
+void	print_msg(char *msg, t_philo *data, t_all *all);
 int		ft_atoi(const char *str);
-long	calculate_time(t_condition *condition);
-void	ft_usleep(int waiting_time, t_condition *condition);
-void	*waiter_routine(void *sub_philo);
-void	print_message(char *message, t_condition *condition, t_philo *philo);
-void	error_message(char *message);
-void	end_program_bonus(t_condition *condition, t_philo *philo);
+size_t	ft_strlen(char *str);
+
+void	philo_life(t_all *all, t_philo *data);
 
 #endif
