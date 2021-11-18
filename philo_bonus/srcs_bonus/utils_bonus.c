@@ -6,11 +6,11 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 20:26:08 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/17 21:26:34 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:15:52 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "../philosophers_bonus.h"
 
 void	my_usleep(int wait_time, t_philo *data)
 {

@@ -6,11 +6,11 @@
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 19:58:37 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/17 21:26:03 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:16:04 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "../philosophers_bonus.h"
 
 long	calc_time(t_philo *data)
 {

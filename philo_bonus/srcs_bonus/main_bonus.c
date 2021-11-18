@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 20:25:50 by hfunctio          #+#    #+#             */
-/*   Updated: 2021/11/17 21:21:56 by hfunctio         ###   ########.fr       */
+/*   Updated: 2021/11/18 17:15:06 by hfunctio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers_bonus.h"
+#include "../philosophers_bonus.h"
 
 static	void	end_bonus(t_philo *data, t_all *all)
 {

@@ -6,7 +6,7 @@
 #    By: hfunctio <hfunctio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/17 18:56:19 by hfunctio          #+#    #+#              #
-#    Updated: 2021/11/17 19:04:43 by hfunctio         ###   ########.fr        #
+#    Updated: 2021/11/18 17:13:08 by hfunctio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,11 @@ NAME = philo_bonus
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-SRCS = main.c utils.c
+SRCS =	srcs_bonus/main_bonus.c \
+		srcs_bonus/utils_bonus.c  \
+		srcs_bonus/init_args_bonus.c \
+		srcs_bonus/philo_life.c \
+
 
 GCC = gcc
 
@@ -22,9 +26,9 @@ MK_DIR = mkdir
 
 OBJSDIR = Bonus_tmp
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(subst srcs_bonus/,$(OBJSDIR)/,$(SRCS:.c=.o))
 
-HDR = -I.philo_bonus.h
+HDR = -I.philosophers_bonus.h
 
 RM = rm -rf
 
@@ -43,10 +47,10 @@ $(OBJSDIR):
 GREEN = \033[0;32m
 RESET = \033[0m
 
-$(OBJSDIR)/%.o: %.c | $(OBJSDIR)
-	@$(GCC) $(FLAGS) $(HDR) -c $< -o $@
+$(OBJSDIR)/%.o: srcs_bonus/%.c | $(OBJSDIR)
+	@$(GCC) $(CFLAGS) $(HDR) -c $< -o $@
 
-$(NAME): $(OBJS) philo_bonus.h Makefile
+$(NAME): $(OBJS) philosophers_bonus.h Makefile
 	@$(GCC) -lpthread $(OBJS) -o $@
 	@echo "$(GREEN) objects were created $(RESET)"
 	@echo "$(GREEN) philo_bonus - [ok] $(RESET)"
